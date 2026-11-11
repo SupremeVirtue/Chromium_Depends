@@ -131,7 +131,7 @@ def MakeEsbuild(mVars:dict[str,any]):
     ParseEsbuild(SafeExecDeps(FetchDeps(DevToolsDepsUrl(mVars.get("devtools_frontend_revision")))).get("deps"))
 
 def DownLoadWinRcExe():
-    DownLoad("gcs","chromium-browser-clang/rc",FetchDeps(ChromiumRcUrl(version)),"rc.exe")
+    DownLoad("gcs","chromium-browser-clang/rc",FetchDeps(ChromiumRcUrl(os.getenv("CHROMIUM_VERSION"))),"rc.exe")
       
 def main():
     mChromiumDepends = SafeExecDeps(FetchDeps(ChromiumDepsUrl(os.getenv("CHROMIUM_VERSION"))))
