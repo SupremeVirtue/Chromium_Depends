@@ -25,6 +25,6 @@ jobs:
           tag_name: ${{inputs.chromium_version}}
           name: ${{inputs.chromium_version}}
           files: DownLoad/*
-          draft: true
+          #draft: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
