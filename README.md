@@ -1,0 +1,2 @@
+# Chromium_Depends
+离线编译Chromium时需要的依赖
