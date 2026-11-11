@@ -10,17 +10,17 @@ permissions:
   contents: write
 jobs:
   package:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: 下载
         env:
           CHROMIUM_VERSION: ${{inputs.chromium_version}}
         run: |
           python3 ParseChromiumDeps.py
       - name: 发布
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{inputs.chromium_version}}
           name: ${{inputs.chromium_version}}
