@@ -1,0 +1,31 @@
+name: 解析Chromium依赖
+on:
+  workflow_dispatch:
+    inputs:
+      chromium_version:
+        description: "Chromium_Version"
+        required: true
+        default: "156.0.8078.48"
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: 下载
+        env:
+          CHROMIUM_VERSION: ${{ inputs.chromium_version }}
+        run: |
+          python3 ParseChromiumDeps.py
+      - name: 发布
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.chromium_version }}
+          name: ${{ inputs.chromium_version }}
+          files: DownLoad/*
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
