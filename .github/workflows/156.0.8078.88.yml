@@ -14,18 +14,17 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
       - name: 下载
         env:
-          CHROMIUM_VERSION: ${{ inputs.chromium_version }}
+          CHROMIUM_VERSION: ${{inputs.chromium_version}}
         run: |
           python3 ParseChromiumDeps.py
       - name: 发布
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.chromium_version }}
-          name: ${{ inputs.chromium_version }}
+          tag_name: ${{inputs.chromium_version}}
+          name: ${{inputs.chromium_version}}
           files: DownLoad/*
           draft: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
