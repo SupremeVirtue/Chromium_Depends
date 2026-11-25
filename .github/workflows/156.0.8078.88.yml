@@ -19,12 +19,12 @@ jobs:
           CHROMIUM_VERSION: ${{inputs.chromium_version}}
         run: |
           python3 ParseChromiumDeps.py
+          curl -o DownLoad/chromium.tar.xz https://cef-builds.spotifycdn.com/chromium-${{inputs.chromium_version}}.tar.xz
       - name: 发布
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{inputs.chromium_version}}
           name: ${{inputs.chromium_version}}
           files: DownLoad/*
-          #draft: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
